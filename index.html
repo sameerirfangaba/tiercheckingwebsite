@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Country Tier Checker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Country Tier Checker</h1>
+  <input type="text" id="country" placeholder="Enter country name" onkeypress="checkEnter(event)">
+  <button onclick="checkTier()">Check Tier</button>
+  <div id="result" class="notfound">Enter a country and press Enter or click Check</div>
+</div>
+
+<script>
+const countryTiers = {
+    // Tier 1
+  "USA": "Tier 1","US": "Tier 1", "UK": "Tier 1", "Canada": "Tier 1", "Australia": "Tier 1", "Austria": "Tier 1", "Germany": "Tier 1", "France": "Tier 1","Belgium": "Tier 1", "Denmark": "Tier 1", "Finland": "Tier 1", "Ireland": "Tier 1", "Italy": "Tier 1", "Luxembourg": "Tier 1", "Netherlands": "Tier 1", "New Zealand": "Tier 1", "Norway": "Tier 1", "Spain": "Tier 1", "Sweden": "Tier 1", "Switzerland": "Tier 1","United States of America": "Tier 1",
+    // Tier 2  
+  "Andorra": "Tier 2", "Argentina": "Tier 2", "Bahamas": "Tier 2", "Belarus": "Tier 2", "Bolivia": "Tier 2", "Bosnia": "Tier 2", "Herzegovina": "Tier 2", "Brazil": "Tier 2", "Brunei": "Tier 2",
+  "Bulgaria": "Tier 2", "Chile": "Tier 2", "China": "Tier 2", "Colombia": "Tier 2", "Costa Rica": "Tier 2", "Croatia": "Tier 2", "Cyprus": "Tier 2", "Czech Republic": "Tier 2", "Dominican Republic": "Tier 2", "Ecuador": "Tier 2",  "Egypt": "Tier 2", "Estonia": "Tier 2", "Fiji": "Tier 2", "Greece": "Tier 2", "Guyana": "Tier 2", "Hong Kong": "Tier 2", "Hungary": "Tier 2", "Iceland": "Tier 2", "Indonesia": "Tier 2", "Israel": "Tier 2", "Japan": "Tier 2", "Kazakhstan": "Tier 2", "Latvia": "Tier 2", "Lithuania": "Tier 2", "Macao": "Tier 2","Malaysia": "Tier 2","Malta": "Tier 2","Mexico": "Tier 2","Montenegro": "Tier 2","Morocco": "Tier 2","Nepal": "Tier 2","Oman": "Tier 2","Panama": "Tier 2","Paraguay": "Tier 2","Peru": "Tier 2","Philippine": "Tier 2","Philippines": "Tier 2","Poland": "Tier 2","Portugal": "Tier 2","Puerto Rico": "Tier 2","Qatar": "Tier 2","Republic of Korea (South)": "Tier 2","South Korea": "Tier 2","Korea": "Tier 2","Romania": "Tier 2","Russian Federation": "Tier 2","Russia": "Tier 2","Saudi Arabia": "Tier 2","KSA": "Tier 2","SA": "Tier 2","Serbia": "Tier 2","Singapore": "Tier 2","Slovakia": "Tier 2","Slovenia": "Tier 2","South Africa": "Tier 2","Thailand": "Tier 2","Turkey": "Tier 2","Ukraine": "Tier 2","United Arab Emirates": "Tier 2","UAE": "Tier 2","AE": "Tier 2","Uruguay": "Tier 2","Vanuatu": "Tier 2",
+    // Tier 3
+  "Albania": "Tier 3", "Algeria": "Tier 3", "Angola": "Tier 3", "Armenia": "Tier 3", "Azerbaijan": "Tier 3", "Bahrain": "Tier 3", "Bangladesh": "Tier 3", "Barbados": "Tier 3", "Belize": "Tier 3","Benin": "Tier 3", "Botswana": "Tier 3", "Burkina Faso": "Tier 3", "Burundi": "Tier 3", "Cambodia": "Tier 3", "Cameroon": "Tier 3", "Cape Verde": "Tier 3", "Chad": "Tier 3", "Comoros": "Tier 3","Congo": "Tier 3", "El Salvador": "Tier 3", "Ethiopia": "Tier 3", "Gabon": "Tier 3", "Georgia": "Tier 3", "Guatemala": "Tier 3", "Guinea": "Tier 3", "Haiti": "Tier 3", "Honduras": "Tier 3","India": "Tier 3", "Iraq": "Tier 3", "Jamaica": "Tier 3", "Jordan": "Tier 3", "Kenya": "Tier 3", "Kuwait": "Tier 3", "Kyrgyzstan": "Tier 3", "Laos": "Tier 3", "Lebanon": "Tier 3","Lesotho": "Tier 3", "Macedonia": "Tier 3", "Madagascar": "Tier 3", "Mali": "Tier 3", "Mauritania": "Tier 3", "Mauritius": "Tier 3", "Moldova": "Tier 3", "Mongolia": "Tier 3", "Mozambique": "Tier 3","Namibia": "Tier 3", "Nicaragua": "Tier 3", "Niger": "Tier 3", "Nigeria": "Tier 3", "Pakistan": "Tier 3", "Senegal": "Tier 3", "Sri Lanka": "Tier 3", "Suriname": "Tier 3", "Swaziland": "Tier 3","Tajikistan": "Tier 3", "Tanzania": "Tier 3", "Togo": "Tier 3", "Trinidad": "Tier 3", "Tobago": "Tier 3", "Tunisia": "Tier 3", "Turkmenistan": "Tier 3", "Uganda": "Tier 3", "Uzbekistan": "Tier 3","Vietnam": "Tier 3", "Zambia": "Tier 3"
+};
+
+function checkTier() {
+  const country = document.getElementById("country").value.trim();
+  const resultDiv = document.getElementById("result");
+  
+  if(!country) {
+    resultDiv.textContent = "Please enter a country!";
+    resultDiv.className = "notfound";
+    return;
+  }
+
+  const tier = countryTiers[country];
+  
+  if(tier === "Tier 1") {
+    resultDiv.textContent = `${country} is ${tier}`;
+    resultDiv.className = "tier1";
+  } else if(tier === "Tier 2") {
+    resultDiv.textContent = `${country} is ${tier}`;
+    resultDiv.className = "tier2";
+  } else if(tier === "Tier 3") {
+    resultDiv.textContent = `${country} is ${tier}`;
+    resultDiv.className = "tier3";
+  } else {
+    resultDiv.textContent = "Country not found!";
+    resultDiv.className = "notfound";
+  }
+}
+
+function checkEnter(event) {
+  if(event.key === "Enter") {
+    checkTier();
+  }
+}
+</script>
+
+</body>
+</html>
